@@ -12,21 +12,27 @@ function setup(){
    pose.on('pose',gotPoses);
 }
 
-function draw(){
-    image(Video,0,0,400,400);
-    image(img,results[0].pose.nose.x,results[0].pose.nose.y,50,50);
-}
 
 function modelLoaded(){
     console.log("poseNet is Intialised")
 } 
 
+x=0;
+y=0;
+
 function gotPoses(results){
   if  (results.length > 0){
       console.log(results);
-      console.log("nose x= "+ results[0].pose.nose.x);
-      console.log("nose y= "+ results[0].pose.nose.y);
+      x= results[0].pose.nose.x;
+      y=results[0].pose.nose.y;
+      console.log("nose x= "+ x);
+      console.log("nose y= "+ y);
     }
   
   
 }
+function draw(){
+    image(Video,0,0,400,400);
+    image(img,x-15,y-15,100,100);
+}
+
